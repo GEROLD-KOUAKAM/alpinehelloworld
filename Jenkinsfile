@@ -1,3 +1,6 @@
+/* import share library */
+@Library('share-library')_
+
 pipeline {
      environment {
        IMAGE_NAME = "alpinehelloworld"
@@ -86,4 +89,11 @@ pipeline {
         }
      }
   }
+      post {
+       always {
+       script {
+         slackNotifier currentBuild.result
+     }
+    }  
+    }
 }
